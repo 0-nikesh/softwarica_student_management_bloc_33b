@@ -1,0 +1,23 @@
+{
+    "billId": 1,
+    "customerId": 1,
+    "employeeId": 2,
+    "billDateTime": "2022-12-12T10:59:00Z",
+    "items": [
+        {
+            "productId": "p1",
+            "name": "mouse",
+            "quantity": 1,
+            "price": 1200,
+            "total": 1200
+        },
+        {
+            "productId": 3,
+            "name": "pad",
+            "quantity": 10,
+            "price": 100,
+            "total": 1000
+        }
+    ],
+    "billAmount": 2200
+}
