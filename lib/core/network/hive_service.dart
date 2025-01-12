@@ -34,7 +34,7 @@ class HiveService {
 
 // Course Queries
   Future<void> addCourse(CourseHiveModel course) async {
-    var box = await Hive.openBox<CourseHiveModel>(HiveTableConstant.batchBox);
+    var box = await Hive.openBox<CourseHiveModel>(HiveTableConstant.batchBox);  
     await box.put(course.courseId, course);
   }
 

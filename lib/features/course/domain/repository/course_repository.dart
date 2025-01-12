@@ -3,7 +3,7 @@ import 'package:softwarica_student_management_bloc/core/error/failure.dart';
 import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
 
 abstract interface class iCourseRepository {
-  Future<Either<Failure, List<CourseEntity>>> getBatches();
-  Future<Either<Failure, void>> createBatch(CourseEntity batch);
-  Future<Either<Failure, void>> deleteBatch(String id);
+  Future<Either<Failure, List<CourseEntity>>> getCourses();
+  Future<Either<Failure, void>> createCourse(CourseEntity course);
+  Future<Either<Failure, void>> deleteCourse(String id);
 }
