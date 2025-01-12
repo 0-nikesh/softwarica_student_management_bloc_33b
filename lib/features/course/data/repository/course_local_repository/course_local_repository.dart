@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:softwarica_student_management_bloc/core/error/failure.dart';
+import 'package:softwarica_student_management_bloc/features/course/data/data_source/local_datasource/course_local_datasource.dart';
 import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
 import 'package:softwarica_student_management_bloc/features/course/domain/repository/course_repository.dart';
 
 class CourseLocalRepository implements iCourseRepository {
-  final CourseLocalRepository _courseLocalDataSource;
+  final CourseLocalDatasource _courseLocalDataSource;
 
-  CourseLocalRepository({required CourseLocalRepository courseLocalDataSource})
+  CourseLocalRepository({required CourseLocalDatasource courseLocalDataSource})
       : _courseLocalDataSource = courseLocalDataSource;
   @override
   Future<Either<Failure, void>> createCourse(CourseEntity course) {
