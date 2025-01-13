@@ -4,7 +4,7 @@ import 'package:softwarica_student_management_bloc/features/batch/data/data_sour
 import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
 import 'package:softwarica_student_management_bloc/features/batch/domain/repository/batch_repository.dart';
 
-class BatchLocalRepository implements iBatchRepository {
+class BatchLocalRepository implements IBatchRepository {
   final BatchLocalDataSource _batchLocalDataSource;
 
   BatchLocalRepository({required BatchLocalDataSource batchLocalDataSource})

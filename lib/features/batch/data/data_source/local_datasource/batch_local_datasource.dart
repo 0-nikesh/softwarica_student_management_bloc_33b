@@ -4,38 +4,40 @@ import 'package:softwarica_student_management_bloc/features/batch/data/model/bat
 import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
 
 class BatchLocalDataSource implements IBatchDataSource {
-  final HiveService _hiveService;
-  BatchLocalDataSource(this._hiveService);
+  final HiveService hiveService;
+
+  BatchLocalDataSource({required this.hiveService});
 
   @override
-  Future<void> createBatch(BatchEntity batchEntity) async {
+  Future<void> createBatch(BatchEntity batch) async {
     try {
-      final batchHiveModel = BatchHiveModel.fromEntity(batchEntity);
-      await _hiveService.addBatch(batchHiveModel);
+      // Convert BatchEntity to BatchHiveModel
+      final batchHiveModel = BatchHiveModel.fromEntity(batch);
+      await hiveService.addBatch(batchHiveModel);
     } catch (e) {
-      throw UnimplementedError();
+      throw Exception(e);
     }
   }
 
   @override
   Future<void> deleteBatch(String id) async {
     try {
-      await _hiveService.deleteBatch(id);
+      await hiveService.deleteBatch(id);
     } catch (e) {
-      throw UnimplementedError();
+      throw Exception(e);
     }
   }
 
   @override
   Future<List<BatchEntity>> getBatches() {
     try {
-      return _hiveService.getAllBatches().then(
+      return hiveService.getAllBatches().then(
         (value) {
           return value.map((e) => e.toEntity()).toList();
         },
       );
     } catch (e) {
-      throw UnimplementedError();
+      throw Exception(e);
     }
   }
 }

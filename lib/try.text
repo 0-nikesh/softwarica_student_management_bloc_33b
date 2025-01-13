@@ -2,7 +2,8 @@ step 1: create hive table constant
 step 2: create entities
 step 3: Model(replica of database)(inside data layer)
 step 4: create a domain layer repository
-step 5: 
+step 5: create a data layer reporitory
+step 6: 
 
 dart run build_runner build -d
 

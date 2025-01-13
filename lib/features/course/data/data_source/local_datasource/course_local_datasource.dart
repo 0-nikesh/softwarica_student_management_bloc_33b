@@ -1,41 +1,42 @@
+import 'package:softwarica_student_management_bloc/core/error/failure.dart';
 import 'package:softwarica_student_management_bloc/core/network/hive_service.dart';
 import 'package:softwarica_student_management_bloc/features/course/data/data_source/course_data_source.dart';
 import 'package:softwarica_student_management_bloc/features/course/data/model/course_hive_model.dart';
 import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
 
-class CourseLocalDatasource implements ICourseDataSource {
+class CourseLocalDataSource implements ICourseDataSource {
   final HiveService _hiveService;
-  CourseLocalDatasource(this._hiveService);
+
+  CourseLocalDataSource({required HiveService hiveService})
+      : _hiveService = hiveService;
 
   @override
   Future<void> createCourse(CourseEntity course) async {
     try {
-      final coursehiveModel = CourseHiveModel.fromEntity(course);
-      await _hiveService.addCourse(coursehiveModel);
+      // Convert course entity to course model
+      final courseHiveModel = CourseHiveModel.fromEntity(course);
+      _hiveService.addCourse(courseHiveModel);
     } catch (e) {
-      throw UnimplementedError();
+      throw LocalDatabaseFailure(message: e.toString());
     }
   }
 
   @override
   Future<void> deleteCourse(String id) async {
     try {
-      await _hiveService.deleteCourse(id);
+      _hiveService.deleteCourse(id);
     } catch (e) {
-      throw UnimplementedError();
+      throw LocalDatabaseFailure(message: e.toString());
     }
   }
 
   @override
-  Future<List<CourseEntity>> getCourses() {
+  Future<List<CourseEntity>> getCourses() async {
     try {
-      return _hiveService.getAllCourses().then(
-        (value) {
-          return value.map((e) => e.toEntity()).toList();
-        },
-      );
+      final courseHiveModelList = await _hiveService.getAllCourses();
+      return CourseHiveModel.toEntityList(courseHiveModelList);
     } catch (e) {
-      throw UnimplementedError();
+      throw LocalDatabaseFailure(message: e.toString());
     }
   }
 }

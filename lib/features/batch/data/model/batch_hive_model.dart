@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:softwarica_student_management_bloc/app/constants/hive_table_constant.dart';
 import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
 import 'package:uuid/uuid.dart';
 
 part 'batch_hive_model.g.dart';
+
 @HiveType(typeId: HiveTableConstant.batchTableId)
 class BatchHiveModel extends Equatable {
   @HiveField(0)
@@ -17,10 +18,12 @@ class BatchHiveModel extends Equatable {
     required this.batchName,
   }) : batchId = batchId ?? const Uuid().v4();
 
-  const BatchHiveModel.intial()
+  // Initail Constructor
+  const BatchHiveModel.initial()
       : batchId = '',
         batchName = '';
 
+  // From Entity
   factory BatchHiveModel.fromEntity(BatchEntity entity) {
     return BatchHiveModel(
       batchId: entity.batchId,
@@ -28,6 +31,7 @@ class BatchHiveModel extends Equatable {
     );
   }
 
+  // To Entity
   BatchEntity toEntity() {
     return BatchEntity(
       batchId: batchId,

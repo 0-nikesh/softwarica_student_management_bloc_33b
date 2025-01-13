@@ -4,10 +4,10 @@ import 'package:softwarica_student_management_bloc/features/course/data/data_sou
 import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
 import 'package:softwarica_student_management_bloc/features/course/domain/repository/course_repository.dart';
 
-class CourseLocalRepository implements iCourseRepository {
-  final CourseLocalDatasource _courseLocalDataSource;
+class CourseLocalRepository implements ICourseRepository {
+  final CourseLocalDataSource _courseLocalDataSource;
 
-  CourseLocalRepository({required CourseLocalDatasource courseLocalDataSource})
+  CourseLocalRepository({required CourseLocalDataSource courseLocalDataSource})
       : _courseLocalDataSource = courseLocalDataSource;
   @override
   Future<Either<Failure, void>> createCourse(CourseEntity course) {
